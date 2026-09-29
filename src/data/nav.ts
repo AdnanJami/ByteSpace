@@ -3,7 +3,7 @@ import type { NavLink } from "@/types/nav";
 export const primaryNavLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
-  { label: "Creators", href: "/#creators" },
+  { label: "Creators", href: "/creators" },
 ];
 
 /** Whether a nav link points at the page currently being viewed. */

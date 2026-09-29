@@ -5,6 +5,7 @@ import { CreatorHero } from "@/components/creator/CreatorHero";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SearchToolbar } from "@/components/search/SearchToolbar";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { getCreator, getCreatorCourses } from "@/data/creators";
 
 export async function generateMetadata({
@@ -32,13 +33,20 @@ export default async function CreatorPage({ params }: PageProps<"/creators/[slug
         <div className="mx-auto flex max-w-[1200px] flex-col px-5 pb-16 pt-12 sm:px-10 lg:px-0 lg:pb-[61px] lg:pt-[62px]">
           <SearchToolbar />
           <section aria-label={`Courses by ${creator.name}`} className="mt-10">
-            <ul className="grid grid-cols-1 justify-items-center gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {creatorCourses.map((course) => (
-                <li key={course.id} className="flex w-full justify-center">
-                  <CourseCard course={course} />
-                </li>
-              ))}
-            </ul>
+            {creatorCourses.length === 0 ? (
+              <EmptyState
+                title="No courses yet"
+                description={`${creator.name} hasn't published a course. Check back soon.`}
+              />
+            ) : (
+              <ul className="grid grid-cols-1 justify-items-center gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                {creatorCourses.map((course) => (
+                  <li key={course.id} className="flex w-full justify-center">
+                    <CourseCard course={course} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </section>
         </div>
       </main>
