@@ -10,9 +10,10 @@ export interface CategoryTabsProps {
   onChange: (id: string) => void;
   /** id of the tabpanel this tablist controls, for aria-controls */
   panelId?: string;
+  className?: string;
 }
 
-export function CategoryTabs({ tabs, value, onChange, panelId }: CategoryTabsProps) {
+export function CategoryTabs({ tabs, value, onChange, panelId, className }: CategoryTabsProps) {
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -33,7 +34,10 @@ export function CategoryTabs({ tabs, value, onChange, panelId }: CategoryTabsPro
     <div
       role="tablist"
       aria-label="Course categories"
-      className="flex gap-4 overflow-x-auto pb-2 [scrollbar-width:none] lg:flex-wrap lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden"
+      className={cn(
+        "flex gap-4 overflow-x-auto pb-2 [scrollbar-width:none] lg:flex-wrap lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden",
+        className,
+      )}
     >
       {tabs.map((tab, index) => {
         const selected = tab.id === value;

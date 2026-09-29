@@ -105,6 +105,14 @@
     37.1px 53px 56px 0 #0000001b, 51px 72.9px 72px 0 #00000021;
 }
 
+/* Heading and Display styles are Poppins; every other text style is Satoshi */
+@layer utilities {
+  [class*="text-heading-"],
+  [class*="text-display-"] {
+    font-family: var(--font-poppins-nf), ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
 body {
   background: var(--color-white);
   color: var(--color-ink);
