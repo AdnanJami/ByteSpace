@@ -1,0 +1,9 @@
+import type { SVGProps } from "react";
+
+export function VideoCameraIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" {...props}>
+      <path d="M25 13.3333V26.6667H8.33333V13.3333H25ZM26.6667 10H6.66667C5.75 10 5 10.75 5 11.6667V28.3333C5 29.25 5.75 30 6.66667 30H26.6667C27.5833 30 28.3333 29.25 28.3333 28.3333V22.5L35 29.1667V10.8333L28.3333 17.5V11.6667C28.3333 10.75 27.5833 10 26.6667 10Z" fill="currentColor" />
+    </svg>
+  );
+}
