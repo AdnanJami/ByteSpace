@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { primaryNavLinks } from "@/data/nav";
+import { logout } from "@/lib/api/auth";
+import type { SessionUser } from "@/lib/auth/sessionCookie";
+import { UserAvatar } from "./UserAvatar";
 
 function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -29,13 +34,12 @@ function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-const links = [
-  { label: "Home", href: "#top" },
-  { label: "Courses", href: "#courses" },
-  { label: "Creators", href: "#creators" },
-];
+export interface MobileMenuProps {
+  user: SessionUser | null;
+}
 
-export function MobileMenu() {
+export function MobileMenu({ user }: MobileMenuProps) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -45,6 +49,15 @@ export function MobileMenu() {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  async function handleSignOut() {
+    try {
+      await logout();
+    } finally {
+      setOpen(false);
+      router.refresh();
+    }
+  }
 
   return (
     <>
@@ -64,7 +77,7 @@ export function MobileMenu() {
           id="mobile-nav"
           className="flex flex-col gap-1 border-t border-white/10 bg-primary px-5 pb-6 pt-2 lg:hidden"
         >
-          {links.map((link) => (
+          {primaryNavLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -75,20 +88,41 @@ export function MobileMenu() {
             </Link>
           ))}
           <div className="mt-2 flex flex-col gap-2 border-t border-white/10 pt-4">
-            <Link
-              href="/login"
-              className="rounded-lg px-3 py-3 text-body-m text-gray-50 hover:bg-white/10"
-              onClick={() => setOpen(false)}
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="rounded-full bg-accent px-6 py-3 text-center text-label-m text-ink"
-              onClick={() => setOpen(false)}
-            >
-              Join Us
-            </Link>
+            {user ? (
+              <>
+                <div className="flex items-center gap-3 px-3 py-2">
+                  <UserAvatar name={user.name} />
+                  <div className="min-w-0">
+                    <p className="text-label-m text-white">{user.name}</p>
+                    <p className="truncate text-body-s text-gray-100">{user.email}</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="rounded-lg px-3 py-3 text-left text-body-m text-gray-50 hover:bg-white/10"
+                  onClick={handleSignOut}
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="rounded-lg px-3 py-3 text-body-m text-gray-50 hover:bg-white/10"
+                  onClick={() => setOpen(false)}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-full bg-accent px-6 py-3 text-center text-label-m text-ink"
+                  onClick={() => setOpen(false)}
+                >
+                  Join Us
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ApiError } from "@/lib/api/client";
 import { login, loginSchema, type LoginInput } from "@/lib/api/auth";
@@ -10,9 +10,13 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { SocialLogin } from "./SocialLogin";
 
-export function LoginForm() {
+export interface LoginFormProps {
+  /** Same-site path to return to after signing in. */
+  redirectTo?: string;
+}
+
+export function LoginForm({ redirectTo = "/" }: LoginFormProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const {
     register,
@@ -27,7 +31,7 @@ export function LoginForm() {
   async function onSubmit(data: LoginInput) {
     try {
       await login(data);
-      router.push(searchParams.get("next") ?? "/");
+      router.push(redirectTo);
       router.refresh();
     } catch (error) {
       setError("root", {
@@ -40,14 +44,14 @@ export function LoginForm() {
   }
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex flex-col gap-1">
-        <p className="text-label-m text-primary">Sign In</p>
-        <h2 className="text-heading-s text-ink">Welcome Back</h2>
+    <div className="flex h-full flex-col">
+      <div className="flex flex-col">
+        <p className="text-body-l text-primary">Sign In</p>
+        <h2 className="text-heading-s text-ink sm:text-heading-m">Welcome Back</h2>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-9 flex flex-col gap-6">
+        <div className="flex flex-col gap-[21px]">
           <Input
             type="email"
             label="Email"
@@ -73,17 +77,17 @@ export function LoginForm() {
         )}
 
         <div className="flex justify-end">
-          <Button type="submit" loading={isSubmitting}>
+          <Button type="submit" loading={isSubmitting} className="text-label-l">
             Sign In
           </Button>
         </div>
       </form>
 
-      <SocialLogin />
+      <SocialLogin className="mt-10 sm:mt-[73px]" />
 
-      <p className="text-center text-body-m text-gray-700">
+      <p className="mt-10 text-center text-body-m text-gray-700 lg:mt-auto">
         New user?{" "}
-        <Link href="/signup" className="font-medium text-primary hover:underline">
+        <Link href="/signup" className="text-primary hover:underline">
           Create an account
         </Link>
       </p>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { registerSchema } from "@/lib/api/auth";
+import { encodeSession, SESSION_COOKIE, sessionCookieOptions } from "@/lib/auth/sessionCookie";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
@@ -12,14 +13,13 @@ export async function POST(request: Request) {
     );
   }
 
-  // No real backend: registration always succeeds for valid input and starts a session,
-  // matching the demo login's cookie so the "already signed in" flow is consistent.
+  // No real backend: registration always succeeds for valid input and signs the user in.
+  const { fullName, email } = parsed.data;
   const response = NextResponse.json({ ok: true });
-  response.cookies.set("bytespace_session", "demo-session", {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 7,
-  });
+  response.cookies.set(
+    SESSION_COOKIE,
+    encodeSession({ name: fullName, email }),
+    sessionCookieOptions,
+  );
   return response;
 }

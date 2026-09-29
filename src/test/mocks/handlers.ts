@@ -15,4 +15,5 @@ export const handlers: HttpHandler[] = [
     return HttpResponse.json({ ok: true });
   }),
   http.post("*/api/auth/register", () => HttpResponse.json({ ok: true }, { status: 201 })),
+  http.post("*/api/auth/logout", () => new HttpResponse(null, { status: 204 })),
 ];

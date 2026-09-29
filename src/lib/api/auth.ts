@@ -27,3 +27,7 @@ export function register(input: RegisterInput): Promise<{ ok: true }> {
     body: JSON.stringify(input),
   });
 }
+
+export function logout(): Promise<void> {
+  return api<void>("/api/auth/logout", { method: "POST" });
+}
