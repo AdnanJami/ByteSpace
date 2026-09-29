@@ -4,6 +4,7 @@ import { LevelIcon } from "@/components/ui/icons/LevelIcon";
 import { PeopleIcon } from "@/components/ui/icons/PeopleIcon";
 import { ShareIcon } from "@/components/ui/icons/ShareIcon";
 import { StarFilledIcon } from "@/components/ui/icons/StarFilledIcon";
+import { BackButton } from "@/components/ui/BackButton";
 import type { CourseDetail } from "@/types/courseDetail";
 
 interface BadgeProps {
@@ -26,7 +27,8 @@ export interface CourseIntroProps {
 
 export function CourseIntro({ detail }: CourseIntroProps) {
   return (
-    <div className="relative flex flex-col pb-10 pt-10 xl:pb-[58px] xl:pt-[51px]">
+    <div className="relative flex flex-col pb-10 pt-8 xl:pb-[58px] xl:pt-8">
+      <BackButton fallbackHref="/courses" className="mb-6 xl:mb-[19px]" />
       <h1 className="text-heading-s text-white sm:text-display-xs sm:font-semibold xl:pr-[120px]">{detail.heading}</h1>
       <p className="mt-2 text-heading-xs text-white xl:mt-1.5">{detail.subtitle}</p>
       <p className="mt-5 text-body-l text-white">
@@ -47,7 +49,7 @@ export function CourseIntro({ detail }: CourseIntroProps) {
       {/* Static for now. The design hangs it past the content edge on wide screens. */}
       <button
         type="button"
-        className="mt-5 flex h-10 w-fit items-center gap-2 rounded-full bg-accent px-6 text-label-l text-ink transition-colors hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white xl:absolute xl:-right-[84px] xl:top-[52px] xl:mt-0"
+        className="mt-5 flex h-10 w-fit items-center gap-2 rounded-full bg-accent px-6 text-label-l text-ink transition-colors hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white xl:absolute xl:-right-[84px] xl:top-[92px] xl:mt-0"
       >
         <ShareIcon className="size-6" />
         Share

@@ -25,6 +25,9 @@ export function CourseTabs({ slug }: CourseTabsProps) {
           <Link
             key={tab.href}
             href={tab.href}
+            // Switching tabs replaces the history entry, so Back returns to
+            // the page the course was opened from rather than the last tab.
+            replace
             scroll={false}
             aria-current={active ? "page" : undefined}
             className={cn(

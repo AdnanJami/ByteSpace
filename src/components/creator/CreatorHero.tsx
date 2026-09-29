@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BackButton } from "@/components/ui/BackButton";
 import { gridBackgroundStyle } from "@/lib/gridBackground";
 import type { Creator } from "@/types/creator";
 
@@ -11,7 +12,8 @@ export function CreatorHero({ creator }: CreatorHeroProps) {
     <section className="relative overflow-hidden bg-primary">
       <div aria-hidden="true" className="absolute inset-0" style={gridBackgroundStyle} />
 
-      <div className="relative mx-auto flex max-w-[1200px] flex-col px-5 pb-12 pt-10 sm:px-10 lg:px-0 lg:pb-[82px] lg:pt-[52px]">
+      <div className="relative mx-auto flex max-w-[1200px] flex-col px-5 pb-12 pt-10 sm:px-10 lg:px-0 lg:pb-[82px] lg:pt-8">
+        <BackButton fallbackHref="/creators" className="mb-6" />
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           <Image
             src={creator.avatar}
