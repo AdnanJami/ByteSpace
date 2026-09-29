@@ -1,0 +1,12 @@
+import type { SVGProps } from "react";
+
+export function StarRatingIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M14.43 9.61154L12.96 4.77154C12.67 3.82154 11.33 3.82154 11.05 4.77154L9.57 9.61154H5.12C4.15 9.61154 3.75 10.8615 4.54 11.4215L8.18 14.0215L6.75 18.6315C6.46 19.5615 7.54 20.3115 8.31 19.7215L12 16.9215L15.69 19.7315C16.46 20.3215 17.54 19.5715 17.25 18.6415L15.82 14.0315L19.46 11.4315C20.25 10.8615 19.85 9.62154 18.88 9.62154H14.43V9.61154Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

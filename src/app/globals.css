@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* fonts */
+  --font-poppins: var(--font-poppins-nf);
+  --font-satoshi: var(--font-satoshi-nf);
+  --font-sans: var(--font-satoshi-nf);
+  --font-clash-display: var(--font-clash-display-nf);
+
+  /* colors — from the design's color variables */
+  --color-primary: #003be2;
+  --color-accent: #d4fb20;
+  --color-accent-600: #cbfc01;
+  --color-mindaro-400: #c1e338;
+  --color-violet-50: #f5f2ff;
+  --color-violet-600: #7f30f7;
+  --color-violet-950: #300b6a;
+  --color-ink: #242528;
+  --color-gray-900: #3a3b3f;
+  --color-gray-700: #4b4c53;
+  --color-gray-400: #82868e;
+  --color-gray-300: #abaeb5;
+  --color-gray-200: #ced0d3;
+  --color-gray-100: #e5e6e8;
+  --color-gray-50: #f5f5f6;
+  --color-vulcan-50: #f1f4fe;
+  --color-vulcan-950: #040819;
+  --color-black-950: #000000;
+  --color-black-700: #4f4f4f;
+  --color-black-400: #888888;
+  --color-black-200: #d1d1d1;
+
+  /* typography */
+  /* letter-spacing on Poppins styles is Figma "-1%", i.e. -0.01 * font-size (72px -> -0.72px), not a flat -1px */
+  --text-heading-l: 72px;
+  --text-heading-l--line-height: 1.2;
+  --text-heading-l--letter-spacing: -0.72px;
+  --text-heading-l--font-weight: 600;
+
+  --text-display-s: 44px;
+  --text-display-s--line-height: 52px;
+  --text-display-s--letter-spacing: -0.44px;
+  --text-display-s--font-weight: 500;
+
+  --text-heading-m: 44px;
+  --text-heading-m--line-height: 1.2;
+  --text-heading-m--letter-spacing: -0.44px;
+  --text-heading-m--font-weight: 600;
+
+  --text-display-xs: 36px;
+  --text-display-xs--line-height: 44px;
+  --text-display-xs--letter-spacing: -0.36px;
+  --text-display-xs--font-weight: 500;
+
+  --text-heading-s: 24px;
+  --text-heading-s--line-height: 32px;
+  --text-heading-s--letter-spacing: -0.24px;
+  --text-heading-s--font-weight: 600;
+
+  --text-heading-xs: 20px;
+  --text-heading-xs--line-height: 28px;
+  --text-heading-xs--letter-spacing: -0.2px;
+  --text-heading-xs--font-weight: 600;
+
+  --text-body-l: 18px;
+  --text-body-l--line-height: 1.6;
+  --text-body-l--font-weight: 400;
+
+  --text-body-m: 16px;
+  --text-body-m--line-height: 24px;
+  --text-body-m--font-weight: 400;
+
+  --text-body-s: 14px;
+  --text-body-s--line-height: 1.6;
+  --text-body-s--font-weight: 400;
+
+  --text-body-xs: 12px;
+  --text-body-xs--line-height: 1.6;
+  --text-body-xs--font-weight: 400;
+
+  --text-label-xl: 20px;
+  --text-label-xl--line-height: 1.2;
+  --text-label-xl--font-weight: 500;
+
+  --text-label-l: 18px;
+  --text-label-l--line-height: 1.2;
+  --text-label-l--font-weight: 500;
+
+  --text-label-m: 16px;
+  --text-label-m--line-height: 1.2;
+  --text-label-m--font-weight: 500;
+
+  --text-label-s: 14px;
+  --text-label-s--line-height: 1.2;
+  --text-label-s--font-weight: 500;
+
+  --text-label-xs: 12px;
+  --text-label-xs--line-height: 20px;
+  --text-label-xs--font-weight: 500;
+
+  /* elevation — layered soft shadow ("A" variable on the Home frame) */
+  --shadow-elevated: 0.5px 0.7px 3px 0 #0000000a, 2.2px 3.2px 5.7px 0 #0000000f,
+    5.4px 7.7px 9.6px 0 #00000012, 10.2px 14.6px 16.1px 0 #00000014,
+    16.9px 24.2px 24px 0 #00000017, 25.8px 36.9px 36px 0 #0000001a,
+    37.1px 53px 56px 0 #0000001b, 51px 72.9px 72px 0 #00000021;
+}
+
+body {
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-satoshi-nf), ui-sans-serif, system-ui, sans-serif;
+}
