@@ -1,34 +1,31 @@
-import type { FooterLinkGroup } from "@/types/nav";
+import type { NavLink } from "@/types/nav";
 
-export const footerLinkGroups: FooterLinkGroup[] = [
-  {
-    title: "Browse",
-    links: [
-      { label: "Featured Courses", href: "/courses" },
-      { label: "Featured Categories", href: "/courses" },
-      { label: "Business", href: "/courses?category=business" },
-      { label: "IT", href: "/courses?category=it-software" },
-      { label: "Design", href: "/courses?category=design" },
-      { label: "Development", href: "/courses?category=development" },
-      { label: "Marketing", href: "/courses?category=marketing" },
-      { label: "Photography", href: "/courses?category=photography" },
-      { label: "Finance", href: "/courses?category=finance" },
-      { label: "Sport", href: "/courses?category=sport" },
-    ],
-  },
-  {
-    title: "Platform",
-    links: [
-      { label: "Become a Creator", href: "/signup" },
-      { label: "Affiliate Program", href: "/affiliate" },
-      { label: "Contact", href: "/contact" },
-      { label: "Help", href: "/help" },
-      { label: "About", href: "/about" },
-    ],
-  },
+// Three unlabelled columns, as in the design.
+export const footerLinkColumns: NavLink[][] = [
+  [
+    { label: "Featured Courses", href: "/courses" },
+    { label: "Featured Categories", href: "/courses" },
+    { label: "Business", href: "/courses" },
+    { label: "IT", href: "/courses" },
+    { label: "Design", href: "/courses" },
+  ],
+  [
+    { label: "Development", href: "/courses" },
+    { label: "Marketing", href: "/courses" },
+    { label: "Photography", href: "/courses" },
+    { label: "Finance", href: "/courses" },
+    { label: "Sport", href: "/courses" },
+  ],
+  [
+    { label: "Become a Creator", href: "/signup" },
+    { label: "Affiliate Program", href: "/affiliate" },
+    { label: "Contact", href: "/contact" },
+    { label: "Help", href: "/help" },
+    { label: "About", href: "/about" },
+  ],
 ];
 
-export const legalLinks = [
+export const legalLinks: NavLink[] = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
   { label: "Cookies Settings", href: "/cookies" },

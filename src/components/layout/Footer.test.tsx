@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { footerLinkGroups } from "@/data/footer";
+import { footerLinkColumns, legalLinks } from "@/data/footer";
 import { Footer } from "./Footer";
 
 describe("Footer", () => {
-  it("renders every link group heading", () => {
+  it("renders every footer and legal link", () => {
     render(<Footer />);
-    for (const group of footerLinkGroups) {
-      expect(screen.getByText(group.title)).toBeInTheDocument();
+    for (const link of [...footerLinkColumns.flat(), ...legalLinks]) {
+      expect(screen.getByRole("link", { name: link.label })).toHaveAttribute("href", link.href);
     }
   });
 
