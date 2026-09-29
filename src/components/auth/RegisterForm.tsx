@@ -38,14 +38,14 @@ export function RegisterForm() {
   }
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex flex-col gap-1">
-        <p className="text-label-m text-primary">Create an Account</p>
-        <h2 className="text-heading-s text-ink">Welcome to ByteSpace</h2>
+    <div className="flex h-full flex-col">
+      <div className="flex flex-col">
+        <p className="text-body-l text-primary">Create an Account</p>
+        <h2 className="text-heading-s text-ink sm:text-heading-m">Welcome to ByteSpace</h2>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-9 flex flex-col gap-6">
+        <div className="flex flex-col gap-[21px]">
           <Input
             label="Full Name"
             placeholder="Jamie Davis"
@@ -78,15 +78,15 @@ export function RegisterForm() {
         )}
 
         <div className="flex justify-end">
-          <Button type="submit" loading={isSubmitting}>
+          <Button type="submit" loading={isSubmitting} className="text-label-l">
             Continue
           </Button>
         </div>
       </form>
 
-      <p className="text-center text-body-m text-gray-700">
+      <p className="mt-10 text-center text-body-m text-gray-700 lg:mt-auto lg:mb-[11px]">
         Already have an account?{" "}
-        <Link href="/login" className="font-medium text-primary hover:underline">
+        <Link href="/login" className="text-primary hover:underline">
           Login
         </Link>
       </p>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { loginSchema } from "@/lib/api/auth";
+import { encodeSession, SESSION_COOKIE, sessionCookieOptions } from "@/lib/auth/sessionCookie";
 
 const DEMO_EMAIL = "demo@bytespace.com";
 const DEMO_PASSWORD = "password123";
@@ -24,11 +25,10 @@ export async function POST(request: Request) {
   }
 
   const response = NextResponse.json({ ok: true });
-  response.cookies.set("bytespace_session", "demo-session", {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 7,
-  });
+  response.cookies.set(
+    SESSION_COOKIE,
+    encodeSession({ name: "Demo User", email }),
+    sessionCookieOptions,
+  );
   return response;
 }

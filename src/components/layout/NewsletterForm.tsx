@@ -45,19 +45,20 @@ export function NewsletterForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-start"
+      className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-start sm:gap-6"
     >
-      <div className="flex-1 sm:max-w-[376px]">
+      <div className="flex-1 sm:w-[376px] sm:flex-none">
         <Input
           type="email"
           label="Email address"
           hideLabel
           placeholder="Enter your email"
+          className="rounded-full text-body-m"
           error={errors.email?.message}
           {...register("email")}
         />
       </div>
-      <Button type="submit" loading={isSubmitting} className="shrink-0">
+      <Button type="submit" loading={isSubmitting} className="shrink-0 text-label-l">
         Subscribe
       </Button>
     </form>

@@ -1,7 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import type { ComponentProps } from "react";
+import { describe, expect, it, vi } from "vitest";
 import { HeroSearchForm } from "./HeroSearchForm";
+
+vi.mock("next/form", () => ({
+  default: ({ action, ...props }: ComponentProps<"form"> & { action: string }) => (
+    <form action={action} {...props} />
+  ),
+}));
 
 describe("HeroSearchForm", () => {
   it("lets the user type a query", async () => {
@@ -11,17 +18,10 @@ describe("HeroSearchForm", () => {
     expect(input).toHaveValue("figma");
   });
 
-  it("does not navigate on submit and announces the result", async () => {
+  it("submits the query to the course search page as ?q=", () => {
     render(<HeroSearchForm />);
-    await userEvent.type(screen.getByLabelText(/course, topic, creator/i), "figma");
-    await userEvent.click(screen.getByRole("button", { name: /search/i }));
-
-    expect(await screen.findByText(/searching for "figma"/i)).toBeInTheDocument();
-  });
-
-  it("prompts for a term when submitted empty", async () => {
-    render(<HeroSearchForm />);
-    await userEvent.click(screen.getByRole("button", { name: /search/i }));
-    expect(await screen.findByText(/enter a search term first/i)).toBeInTheDocument();
+    const form = screen.getByRole("search", { name: /search courses/i });
+    expect(form).toHaveAttribute("action", "/courses");
+    expect(screen.getByLabelText(/course, topic, creator/i)).toHaveAttribute("name", "q");
   });
 });

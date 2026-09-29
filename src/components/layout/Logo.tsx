@@ -3,20 +3,23 @@ import { cn } from "@/lib/utils";
 
 export interface LogoProps {
   className?: string;
+  /** Just the "b" mark, larger, without the wordmark (auth pages). */
+  markOnly?: boolean;
 }
 
-export function Logo({ className }: LogoProps) {
+export function Logo({ className, markOnly = false }: LogoProps) {
   return (
     <Link
       href="/"
+      aria-label={markOnly ? "ByteSpace home" : undefined}
       className={cn(
         "inline-flex items-center gap-2 font-clash-display text-2xl text-gray-50",
         className,
       )}
     >
       <svg
-        width="20"
-        height="22"
+        width={29}
+        height={31.5}
         viewBox="0 0 28.875 31.5"
         fill="none"
         aria-hidden="true"
@@ -35,7 +38,8 @@ export function Logo({ className }: LogoProps) {
           fill="currentColor"
         />
       </svg>
-      <span>ByteSpace</span>
+      {/* the wordmark sits low, its baseline near the foot of the mark */}
+      {!markOnly && <span className="relative top-[7px]">ByteSpace</span>}
     </Link>
   );
 }
