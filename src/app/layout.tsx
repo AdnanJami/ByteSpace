@@ -51,6 +51,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      // lets Next.js switch smooth scrolling off while it resets scroll on navigation
+      data-scroll-behavior="smooth"
       className={`${poppins.variable} ${satoshi.variable} ${clashDisplay.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col">

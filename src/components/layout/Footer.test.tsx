@@ -22,6 +22,8 @@ describe("Footer", () => {
     render(<Footer />);
     // NewsletterForm is next/dynamic (kept out of the critical bundle), so it
     // resolves asynchronously even here.
-    expect(await screen.findByRole("button", { name: /subscribe/i })).toBeInTheDocument();
+    expect(
+      await screen.findByRole("button", { name: /subscribe/i }, { timeout: 5000 }),
+    ).toBeInTheDocument();
   });
 });

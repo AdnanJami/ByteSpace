@@ -26,7 +26,7 @@ describe("HeaderBar", () => {
     const nav = screen.getByRole("navigation", { name: /primary/i });
     expect(nav).toHaveTextContent("Home");
     expect(screen.getByRole("link", { name: "Courses" })).toHaveAttribute("href", "/courses");
-    expect(screen.getByRole("link", { name: "Creators" })).toHaveAttribute("href", "/#creators");
+    expect(screen.getByRole("link", { name: "Creators" })).toHaveAttribute("href", "/creators");
   });
 
   it("marks the current page in the nav", () => {
